@@ -25,7 +25,7 @@ const Login = ({ setToggle, usersdata, setExistingUsers }) => {
     <div className="flex flex-col w-[25%] bg-white p-[1%] rounded-xl gap-2 shadow-lg ">
       <form
         onSubmit={handleSubmit(handleLoginForm)}
-        className=" w-full flex flex-col w-[25%] bg-white p-[1%] rounded-xl gap-6"
+        className=" w-full flex flex-col bg-white p-[1%] rounded-xl gap-6"
       >
         <h1 className="flex justify-center text-2xl font-medium mb-3">Login here</h1>
         <input
@@ -41,7 +41,7 @@ const Login = ({ setToggle, usersdata, setExistingUsers }) => {
           placeholder="Enter password"
         />
         <input
-          className="border-1 rounded p-[2%] bg-blue-600 text-white font-[30px] font-medium mt-5"
+          className="border-1 rounded p-[2%] bg-blue-600 text-white font-medium mt-5"
           type="submit"
           value={"Lets Check"}
         />
