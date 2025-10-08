@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { Mystore } from "../Context/Mycontext";
+import { useNavigate } from "react-router";
 
 const Add_Recipe = () => {
   const {
@@ -9,21 +11,25 @@ const Add_Recipe = () => {
     formState: { errors },
   } = useForm();
 
-//   const [imagePreview, setImagePreview] = useState(null);
+  const navigate = useNavigate();
+  const { setRecipes,recipes } = useContext(Mystore);
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
+    let updatedArr = [...recipes, data]
+    setRecipes(updatedArr);
+    localStorage.setItem("recipe",JSON.stringify(updatedArr))
+    navigate("/");
     reset();
   };
-
-
+  
   return (
-    <div className="flex justify-center items-center min-h-screen mt-5 mb-5 ">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-indigo-50 to-white px-4 py-8 sm:px-6 lg:px-8">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white  shadow-lg rounded-2xl p-8 w-full max-w-md space-y-6"
+        className="bg-white shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl space-y-6"
       >
-        <h2 className="text-2xl font-semibold text-center text-indigo-600">
+        <h2 className="text-2xl sm:text-3xl font-semibold text-center text-indigo-600">
           Add New Recipe 🍳
         </h2>
 
@@ -115,7 +121,7 @@ const Add_Recipe = () => {
             type="url"
             accept="image/*"
             {...register("recipeImage", { required: "Image is required" })}
-          placeholder="Image URL"
+            placeholder="Image URL"
             className="w-full px-3 py-2 border rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
           {errors.recipeImage && (
@@ -128,7 +134,7 @@ const Add_Recipe = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition"
+          className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition-all duration-300"
         >
           Add Recipe
         </button>

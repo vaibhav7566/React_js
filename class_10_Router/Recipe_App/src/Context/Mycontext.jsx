@@ -1,12 +1,19 @@
-import { useContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
-let Mystore = useContext();
+export let Mystore = createContext();
+
+
+export function Mycontextprovider({ children }) {
+
 const [recipes, setRecipes] = useState([]);
 
-function Mycontext({children}){
+useEffect(() => {
+  setRecipes(JSON.parse(localStorage.getItem("recipe")) || []);
+  }
+, [])
 
-
-return <Mycontext.Provider setRecipes={setRecipes}>
+// console.log(recipes)
+  return <Mystore.Provider value={{recipes , setRecipes}}>
     {children}
-</Mycontext.Provider> 
+    </Mystore.Provider>;
 }
