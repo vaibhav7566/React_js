@@ -12,17 +12,17 @@ const Add_Recipe = () => {
   } = useForm();
 
   const navigate = useNavigate();
-  const { setRecipes,recipes } = useContext(Mystore);
+  const { setRecipes, recipes } = useContext(Mystore);
 
   const onSubmit = (data) => {
     // console.log(data);
-    let updatedArr = [...recipes, data]
+    let updatedArr = [...recipes, data];
     setRecipes(updatedArr);
-    localStorage.setItem("recipe",JSON.stringify(updatedArr))
+    localStorage.setItem("recipe", JSON.stringify(updatedArr));
     navigate("/");
     reset();
   };
-  
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-indigo-50 to-white px-4 py-8 sm:px-6 lg:px-8">
       <form
@@ -97,7 +97,9 @@ const Add_Recipe = () => {
             Difficulty
           </label>
           <select
-            {...register("difficulty", { required: "Please select difficulty" })}
+            {...register("difficulty", {
+              required: "Please select difficulty",
+            })}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="">Select difficulty</option>

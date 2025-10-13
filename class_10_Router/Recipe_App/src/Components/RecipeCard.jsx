@@ -17,9 +17,10 @@ let navigate = useNavigate();
 
     {/* Content */}
     <div className="p-5 flex flex-col justify-between flex-grow">
+
       <h2 className="text-2xl font-bold text-gray-800 truncate">{recipeName}</h2>
 
-      <p className="text-gray-600 text-sm  leading-relaxed mt-2 line-clamp-3">
+      <p className="text-gray-600 text-sm    leading-relaxed mt-2 line-clamp-3">
         <span className="font-semibold text-gray-800 max-h-30">Ingredients:</span> {ingredients}
       </p>
 
