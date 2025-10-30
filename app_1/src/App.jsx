@@ -17,20 +17,16 @@
 
 
 import React from 'react'
-import Reusable_comp from './Components/Reusable_comp';
-
+import Reusable_comp from './Components/Reusable_comp'
 const App = () => {
-  let names = ["Arun","Aryan","Tarun","Stuti","Raghav","Vaibhav"];
-
-  return 
-<>
-   {names.map((n,index) => {
-    return <Reusable_comp key={index} name={n} />
-  })}
-</>
-  
+  let names = ['vaibhav','ragahv','palak','nandini'];
+  return (
+    <div>
+     {names.map((name,key)=>{
+       return <Reusable_comp name = {name} key = {key}/>
+     })}
+    </div>
+  )
 }
 
-export default App; 
-
-
+export default App

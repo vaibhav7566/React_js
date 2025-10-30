@@ -17,9 +17,7 @@ const Navigation = () => {
           Products
         </NavLink>
 
-        <NavLink to={"  dets"} end>
-          Details
-        </NavLink>
+        
       </nav>
     </div>
   );

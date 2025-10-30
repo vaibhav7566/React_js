@@ -1,12 +1,18 @@
-import React from 'react'
-import { Outlet } from 'react-router';
+import React from "react";
+import { NavLink, Outlet } from "react-router";
 
 const Products = () => {
   return (
-    <div>This is Products
-      <Outlet/>
+    <div>
+      <h1>This is Products</h1>
+
+      <NavLink to={"/products/dets"} end>
+        Details
+      </NavLink>
+
+      <Outlet />
     </div>
-  )
-}
+  );
+};
 
 export default Products;
