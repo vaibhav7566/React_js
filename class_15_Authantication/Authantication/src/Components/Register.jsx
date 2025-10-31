@@ -1,15 +1,21 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addUser } from "../features/AuthSlice";
 
 const Register = ({ setToggle, setUsersdata, usersdata }) => {
   let { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
 
   let handleRegisterForm = (data) => {
     // console.log(data);
-    let updatedArr = [...usersdata, data];
-    setUsersdata(updatedArr);
-    localStorage.setItem("Usersdata", JSON.stringify(updatedArr));
-    alert("User Registered Successfully ✅")
+    // let updatedArr = [...usersdata, data];
+    // setUsersdata(updatedArr);
+    // localStorage.setItem("Usersdata", JSON.stringify(updatedArr));
+
+    dispatch(addUser(data));
+    
+    alert("User Registered Successfully ✅");
     reset();
   };
 
@@ -19,7 +25,9 @@ const Register = ({ setToggle, setUsersdata, usersdata }) => {
         onSubmit={handleSubmit(handleRegisterForm)}
         className=" w-full flex flex-col w-[25%] bg-white p-[1%] rounded-xl gap-6"
       >
-        <h1 className="flex justify-center text-2xl font-medium">Register here</h1>
+        <h1 className="flex justify-center text-2xl font-medium">
+          Register here
+        </h1>
         <input
           {...register("username")}
           className="border-2 rounded p-[2%] bg-blue-100 outline-none border-blue-500 "
