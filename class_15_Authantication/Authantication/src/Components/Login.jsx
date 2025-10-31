@@ -1,24 +1,32 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-
+import {useNavigate} from 'react-router';
 const Login = ({ setToggle, usersdata, setExistingUsers }) => {
   let { register, handleSubmit, reset } = useForm();
+  let navigate = useNavigate();
 
   let handleLoginForm = (data) => {
     // console.log(data);
-    let userExist = usersdata.filter((user) => {
-      if (user.email === data.email && user.password === data.password) {
-        return user;
-      }
-    });
+    // let userExist = usersdata.filter((user) => {
+    //   if (user.email === data.email && user.password === data.password) {
+    //     return user;
+    //   }
+    // });
 
-    if (userExist[0] !== undefined) {
+    // if (userExist[0] !== undefined) {
+    //   alert("Login Successfully✅");
+    //   setExistingUsers((prev) => [...prev, userExist[0]]);
+    // } else {
+    //   alert("User not found ❌");
+    // }
+
+    const { email, password } = JSON.parse(localStorage.getItem("users"));
+    if (email === data.email && password === data.password) {
+      navigate('/HomeLayout');
       alert("Login Successfully✅");
-      setExistingUsers((prev) => [...prev, userExist[0]]);
     } else {
       alert("User not found ❌");
     }
-
     reset();
   };
   return (
@@ -27,7 +35,9 @@ const Login = ({ setToggle, usersdata, setExistingUsers }) => {
         onSubmit={handleSubmit(handleLoginForm)}
         className=" w-full flex flex-col bg-white p-[1%] rounded-xl gap-6"
       >
-        <h1 className="flex justify-center text-2xl font-medium mb-3">Login here</h1>
+        <h1 className="flex justify-center text-2xl font-medium mb-3">
+          Login here
+        </h1>
         <input
           {...register("email")}
           className="border-2 rounded p-[2%] bg-blue-100 outline-none border-blue-500"

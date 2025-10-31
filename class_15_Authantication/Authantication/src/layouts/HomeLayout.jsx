@@ -1,14 +1,18 @@
-import React from 'react'
-import { NavLink, Outlet } from 'react-router'
+import React from "react";
+import { NavLink, Outlet, useNavigate } from "react-router";
 
 const HomeLayout = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex w-full h-screen bg-gray-100 text-gray-800">
       {/* Sidebar */}
       <nav className="flex flex-col w-64 bg-white border-r shadow-sm p-6">
         {/* Logo */}
         <div className="mb-10">
-          <h1 className="text-2xl font-bold text-blue-600 tracking-tight">MyApp</h1>
+          <h1 className="text-2xl font-bold text-blue-600 tracking-tight">
+            MyApp
+          </h1>
         </div>
 
         {/* Nav Links */}
@@ -20,8 +24,8 @@ const HomeLayout = () => {
               className={({ isActive }) =>
                 `block px-4 py-2 rounded-md transition-all duration-200 ${
                   isActive
-                    ? 'bg-blue-500 text-white font-semibold shadow-md'
-                    : 'text-gray-700 hover:bg-blue-100 hover:text-blue-600'
+                    ? "bg-blue-500 text-white font-semibold shadow-md"
+                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600"
                 }`
               }
             >
@@ -36,8 +40,8 @@ const HomeLayout = () => {
               className={({ isActive }) =>
                 `block px-4 py-2 rounded-md transition-all duration-200 ${
                   isActive
-                    ? 'bg-blue-500 text-white font-semibold shadow-md'
-                    : 'text-gray-700 hover:bg-blue-100 hover:text-blue-600'
+                    ? "bg-blue-500 text-white font-semibold shadow-md"
+                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600"
                 }`
               }
             >
@@ -52,8 +56,8 @@ const HomeLayout = () => {
               className={({ isActive }) =>
                 `block px-4 py-2 rounded-md transition-all duration-200 ${
                   isActive
-                    ? 'bg-blue-500 text-white font-semibold shadow-md'
-                    : 'text-gray-700 hover:bg-blue-100 hover:text-blue-600'
+                    ? "bg-blue-500 text-white font-semibold shadow-md"
+                    : "text-gray-700 hover:bg-blue-100 hover:text-blue-600"
                 }`
               }
             >
@@ -61,6 +65,15 @@ const HomeLayout = () => {
             </NavLink>
           </li>
         </ul>
+
+        <button
+          onClick={() => {
+            localStorage.removeItem("users");
+            navigate("/");
+          }}
+        >
+          LogOut
+        </button>
       </nav>
 
       {/* Main content */}
@@ -68,7 +81,7 @@ const HomeLayout = () => {
         <Outlet />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomeLayout
+export default HomeLayout;

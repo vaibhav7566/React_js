@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addUser } from "../features/AuthSlice";
 
-const Register = ({ setToggle, setUsersdata, usersdata }) => {
+const Register = ({ setToggle }) => {
   let { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
 
   let handleRegisterForm = (data) => {
-    // console.log(data);
-    // let updatedArr = [...usersdata, data];
-    // setUsersdata(updatedArr);
-    // localStorage.setItem("Usersdata", JSON.stringify(updatedArr));
 
     dispatch(addUser(data));
-    
-    alert("User Registered Successfully ✅");
-    reset();
+
+  // get existing users from localStorage
+  // let existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+  // add new user
+  // existingUsers.push(data);
+
+  // save updated list
+  localStorage.setItem('users', JSON.stringify(data));
+
+  alert("User Registered Successfully ✅");
+  reset();
   };
 
   return (
