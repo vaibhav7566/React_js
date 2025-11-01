@@ -19,6 +19,8 @@ const Register = ({ setToggle }) => {
 
   // save updated list
   localStorage.setItem('users', JSON.stringify(data));
+  // localStorage.setItem('allUsers', JSON.stringify(data));
+  
 
   alert("User Registered Successfully ✅");
   reset();

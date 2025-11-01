@@ -1,8 +1,17 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Outlet, useNavigate } from "react-router";
+import { removeUser } from "../features/AuthSlice";
 
 const HomeLayout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(removeUser());
+    navigate("/");
+    alert("User Logged Out Successfully!");
+  };
 
   return (
     <div className="flex w-full h-screen bg-gray-100 text-gray-800">
@@ -67,10 +76,7 @@ const HomeLayout = () => {
         </ul>
 
         <button
-          onClick={() => {
-            localStorage.removeItem("users");
-            navigate("/");
-          }}
+          onClick={handleLogout}
         >
           LogOut
         </button>
